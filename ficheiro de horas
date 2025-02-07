@@ -1,0 +1,36 @@
+def generate_roman_variations():
+    """Generate possible variations for Roman numerals from 1 to 23."""
+    roman_map = {
+        1: "I", 2: "II", 3: "III", 4: "IV", 5: "V",
+        6: "VI", 7: "VII", 8: "VIII", 9: "IX", 10: "X",
+        11: "XI", 12: "XII", 13: "XIII", 14: "XIV", 15: "XV",
+        16: "XVI", 17: "XVII", 18: "XVIII", 19: "XIX", 20: "XX",
+        21: "XXI", 22: "XXII", 23: "XXIII"
+    }
+    return roman_map
+
+def color_roman_in_sequence(roman, sequence):
+    """Map Roman numeral characters to specific positions in a fixed sequence."""
+    positions = list(sequence)
+    result = ['_' for _ in sequence]  # Initialize with placeholders
+    
+    for char in roman:
+        if char in positions:
+            idx = positions.index(char)
+            result[idx] = char
+            positions[idx] = '_'
+    
+    return ''.join(result)
+
+def display_colored_variations():
+    """Display all Roman numeral variations with mapped sequence positions."""
+    sequence = "XIXIVIII"
+    roman_map = generate_roman_variations()
+    
+    print("Roman numeral variations mapped to sequence positions:")
+    for num, roman in roman_map.items():
+        colored = color_roman_in_sequence(roman, sequence)
+        print(f"{num}: {roman} -> {colored}")
+
+if _name_ == "_main_":
+    display_colored_variations()
